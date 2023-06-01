@@ -2,13 +2,21 @@ import NavBar from 'components/NavBar';
 import Footer from 'components/Footer';
 import React from 'react';
 import SalesTable from 'components/SalesTable';
+import BarChart from 'components/BarChart';
 
 function App() {
   return (
     <>
       <NavBar />
       <div className="container">
-        <h1 className="text-primary my-2">Painel de Vendas</h1>
+        <h1 className="text-primary py-4">Painel de Vendas</h1>
+        <div className="row px-4">
+          <div className="col-sm-6">
+            <h4 className="text-center text-info">Desempenho consultor (%)</h4>
+            <BarChart></BarChart>
+          </div>
+        </div>
+
         <SalesTable />
       </div>
       <Footer />
