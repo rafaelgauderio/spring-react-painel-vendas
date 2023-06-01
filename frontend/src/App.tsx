@@ -16,7 +16,9 @@ function App() {
             <BarChart></BarChart>
           </div>
         </div>
-
+        <div className="py-3">
+          <h2 className="text-primary">Total das Vendas</h2>
+        </div>
         <SalesTable />
       </div>
       <Footer />
