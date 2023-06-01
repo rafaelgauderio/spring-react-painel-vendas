@@ -5,24 +5,34 @@ function BarChart() {
     const options = {
         plotOptions: {
             bar: {
-                horizontal: true,
-                borderRadius: 4,                
+                horizontal: true,                
+                borderRadius: 4,
+                dataLabels: {
+                    position: 'center',
+                  },
+            }  
+        },
+        dataLabels: {
+            enabled: true,           
+            style: {
+              fontSize: '14px',
+              colors: ['#383837'],            
             }
         }
+
     };
 
     const dadosMockados = {
-        dataLabels: {
-            enable: true
-        },
         labels: {
             categories: ['Rafael', 'Diego', 'Larissa', 'Claudia', 'Olga']
+
         },
         series: [
             {
-                name: "% Vendas",
-                data: [23.4, 65.3, 45.4, 80.7, 35.9]
-            }
+                name: "% Vendas fechadas por visita",
+                data: [23.4, 65.3, 45.4, 80.7, 35.9],
+            },
+
         ]
     };
 
