@@ -130,7 +130,7 @@ INSERT INTO tb_sales(seller_id,visited_clients,closed_deals,quantity,date) VALUE
 INSERT INTO tb_sales(seller_id,visited_clients,closed_deals,quantity,date) VALUES (1,64,33,8193.0,'2022-03-13');
 INSERT INTO tb_sales(seller_id,visited_clients,closed_deals,quantity,date) VALUES (3,39,39,10557.0,'2022-03-05');
 INSERT INTO tb_sales(seller_id,visited_clients,closed_deals,quantity,date) VALUES (3,158,84,21601.0,'2022-03-02');
-INSERT INTO tb_sales(seller_id,visited_clients,closed_deals,quantity,date) VALUES (1,12,6,7625.0,'2022-02-29');
+INSERT INTO tb_sales(seller_id,visited_clients,closed_deals,quantity,date) VALUES (1,12,6,7625.0,'2022-02-28');
 INSERT INTO tb_sales(seller_id,visited_clients,closed_deals,quantity,date) VALUES (5,82,82,22465.0,'2022-02-27');
 INSERT INTO tb_sales(seller_id,visited_clients,closed_deals,quantity,date) VALUES (3,68,56,12595.0,'2022-02-17');
 INSERT INTO tb_sales(seller_id,visited_clients,closed_deals,quantity,date) VALUES (1,27,13,4636.0,'2022-02-16');

@@ -22,7 +22,7 @@ public class SellerResource {
 	public ResponseEntity<List<SellerDTO>> findAllSellers () {
 		
 		List<SellerDTO> listSellerDTO = sellerService.findAll();
-		return ResponseEntity.ok().body(listSellerDTO);
+		return ResponseEntity.ok(listSellerDTO);
 	}
 
 }
