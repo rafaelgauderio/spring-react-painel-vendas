@@ -2,23 +2,37 @@ package com.rafaeldeluca.painelvendas.entities;
 
 import java.time.LocalDate;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
+
+@Entity
+@Table (name= "tb_sales")
 public class Sale {
 	
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
-	private Integer visitedClientes;
+	private Integer visitedClients;
 	private Integer closedDeals;
 	private Double quantity;
 	private LocalDate date;
 	
+	@ManyToOne
+	@JoinColumn(name="seller_id")
 	private Seller seller;
 	
 	public Sale () {
 		
 	}
 
-	public Sale(Long id, Integer visitedClientes, Integer closedDeals, Double quantity, LocalDate date, Seller seller) {		
+	public Sale(Long id, Integer visitedClients, Integer closedDeals, Double quantity, LocalDate date, Seller seller) {		
 		this.id = id;
-		this.visitedClientes = visitedClientes;
+		this.visitedClients = visitedClients;
 		this.closedDeals = closedDeals;
 		this.quantity = quantity;
 		this.date = date;
@@ -33,12 +47,12 @@ public class Sale {
 		this.id = id;
 	}
 
-	public Integer getVisitedClientes() {
-		return visitedClientes;
+	public Integer getVisitedClients() {
+		return visitedClients;
 	}
 
-	public void setVisitedClientes(Integer visitedClientes) {
-		this.visitedClientes = visitedClientes;
+	public void setVisitedClients(Integer visitedClients) {
+		this.visitedClients = visitedClients;
 	}
 
 	public Integer getClosedDeals() {
