@@ -1,7 +1,5 @@
 package com.rafaeldeluca.painelvendas.config;
 
-import static org.springframework.security.config.Customizer.withDefaults;
-
 import java.util.Arrays;
 import java.util.List;
 
@@ -11,15 +9,15 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.core.env.Environment;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
-import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
 @Configuration
 @EnableWebSecurity
-public class SecurityConfig {
+public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	
 	// CORS (Cross-origin resource sharing
 	// por padrão spring bloqueia a frontend que está hospedado em outro local acessar o backend que está em outro domínio
@@ -38,7 +36,7 @@ public class SecurityConfig {
 		http.authorizeRequests().anyRequest().permitAll();
 	}
 	
-	
+	/*
 	@Bean
 	SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 		http
@@ -49,11 +47,12 @@ public class SecurityConfig {
 		.httpBasic(withDefaults());
 		return http.build();
 	}
+	*/
 	
 	@Bean
 	CorsConfigurationSource corsConfigurationSource() {
-		CorsConfiguration configuration = new CorsConfiguration();
-		configuration.setAllowedOrigins(Arrays.asList("http://localhost:8080"));
+		CorsConfiguration configuration = new CorsConfiguration().applyPermitDefaultValues();
+		//configuration.setAllowedOrigins(Arrays.asList("http://localhost:8080"));
 		configuration.setAllowedMethods(Arrays.asList("POST", "GET", "PUT", "DELETE", "OPTIONS"));
 		configuration.setAllowedHeaders(List.of("Authorization"));
 		UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
