@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 import com.rafaeldeluca.painelvendas.entities.Sale;
 
 @Repository
-public interface SalleRepository extends JpaRepository<Sale, Long>{
+public interface SaleRepository extends JpaRepository<Sale, Long>{
 
 }
