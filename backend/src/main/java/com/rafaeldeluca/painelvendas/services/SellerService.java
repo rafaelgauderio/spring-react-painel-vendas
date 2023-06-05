@@ -1,5 +1,6 @@
 package com.rafaeldeluca.painelvendas.services;
 
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -12,7 +13,7 @@ import com.rafaeldeluca.painelvendas.entities.Seller;
 import com.rafaeldeluca.painelvendas.repositories.SellerRepository;
 
 @Service
-public class SellerService {
+public class SellerService implements Comparator<Seller> {
 	
 	@Autowired
 	private SellerRepository repositorySeller;
@@ -20,7 +21,14 @@ public class SellerService {
 	@Transactional(readOnly=true)
 	public List<SellerDTO> findAll() {
 		List<Seller> listSeller = repositorySeller.findAll();
+		listSeller.sort(new SellerService());
 		return listSeller.stream().map(sel -> new SellerDTO(sel)).collect(Collectors.toList());
 	}
 
+	@Override
+	public int compare(Seller seller1, Seller seller2) {
+		String name1 = seller1.getName();
+		String name2 = seller2.getName();
+		return name1.compareTo(name2);
+	}
 }
