@@ -1,6 +1,7 @@
 package com.rafaeldeluca.painelvendas.services;
 
 import com.rafaeldeluca.painelvendas.dto.SaleDTO;
+import com.rafaeldeluca.painelvendas.dto.SaleSumDTO;
 import com.rafaeldeluca.painelvendas.entities.Sale;
 import com.rafaeldeluca.painelvendas.repositories.SaleRepository;
 import com.rafaeldeluca.painelvendas.repositories.SellerRepository;
@@ -30,5 +31,10 @@ public class SaleService {
         Page<Sale> pageSale = saleRepository.findAll(listaPaginada);
         Page<SaleDTO> pageSaleDTO = pageSale.map(sale -> new SaleDTO(sale));
         return  pageSaleDTO;
+    }
+
+    @Transactional(readOnly = true)
+    public List<SaleSumDTO> totalVendasPorVendedor () {
+        return saleRepository.somaVendasPorVendedor();
     }
 }
