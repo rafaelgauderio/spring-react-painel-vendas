@@ -20,7 +20,12 @@ html, body {
 
 .footer {
     flex-shrink: 0;
-    text-align: center;
+    text-align: center; 
+    position: relative;
+    margin-top: 50px !important; /* negative value of footer height */
+    height: 150px;
+    clear:both;
+    padding-top:40px !important;    
 }
 
 .bg-primary {

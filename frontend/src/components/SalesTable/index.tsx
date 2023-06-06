@@ -33,7 +33,7 @@ const SalesTable = () => {
                         <td>22</td>
                         <td>37</td>
                         <td>22570.00</td>
-                    </tr>
+                    </tr>                                   
                 </tbody>
             </table>
         </div>
