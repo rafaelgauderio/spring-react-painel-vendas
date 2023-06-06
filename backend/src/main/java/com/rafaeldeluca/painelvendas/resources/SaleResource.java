@@ -1,5 +1,6 @@
 package com.rafaeldeluca.painelvendas.resources;
 
+import com.rafaeldeluca.painelvendas.dto.FeeSuccessDealsDTO;
 import com.rafaeldeluca.painelvendas.dto.SaleDTO;
 import com.rafaeldeluca.painelvendas.dto.SaleSumDTO;
 import com.rafaeldeluca.painelvendas.services.SaleService;
@@ -27,9 +28,15 @@ public class SaleResource {
     }
 
     @GetMapping(value="/totalSalesBySeller")
-    public ResponseEntity<List<SaleSumDTO>> todaVendasPorVendedor() {
+    public ResponseEntity<List<SaleSumDTO>> todalVendasPorVendedor() {
         List<SaleSumDTO> listaSaleSumDTO = saleService.totalVendasPorVendedor();
         return ResponseEntity.ok().body(listaSaleSumDTO);
 
+    }
+
+    @GetMapping(value="/successFeeBySeller")
+    public ResponseEntity<List<FeeSuccessDealsDTO>> taxaNegociosFechadosPorVendedor () {
+        List<FeeSuccessDealsDTO> successDealsDTOList = saleService.taxaNegociosFechadosPorVendedor();
+        return ResponseEntity.ok().body(successDealsDTOList);
     }
 }

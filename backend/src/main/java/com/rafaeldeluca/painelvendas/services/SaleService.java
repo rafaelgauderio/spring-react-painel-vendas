@@ -1,5 +1,6 @@
 package com.rafaeldeluca.painelvendas.services;
 
+import com.rafaeldeluca.painelvendas.dto.FeeSuccessDealsDTO;
 import com.rafaeldeluca.painelvendas.dto.SaleDTO;
 import com.rafaeldeluca.painelvendas.dto.SaleSumDTO;
 import com.rafaeldeluca.painelvendas.entities.Sale;
@@ -36,5 +37,10 @@ public class SaleService {
     @Transactional(readOnly = true)
     public List<SaleSumDTO> totalVendasPorVendedor () {
         return saleRepository.somaVendasPorVendedor();
+    }
+
+    @Transactional(readOnly = true)
+    public List<FeeSuccessDealsDTO> taxaNegociosFechadosPorVendedor () {
+        return saleRepository.closedDealsFeeGroupBySeller();
     }
 }
