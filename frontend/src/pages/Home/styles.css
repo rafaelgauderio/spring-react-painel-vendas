@@ -1,0 +1,14 @@
+.content {
+    display: flex;
+    flex-direction: column;
+    width: 60%;
+    align-items: flex-start;
+    justify-content: center;
+    background-color: var(--color-secondary);    
+    padding: 20px;
+    border-radius: 10px;    
+}
+
+.content p {
+    font-weight: 500 !important;
+}
