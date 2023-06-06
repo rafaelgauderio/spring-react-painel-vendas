@@ -1,6 +1,6 @@
 package com.rafaeldeluca.painelvendas.config;
 
-/*
+
 import java.util.Arrays;
 import java.util.List;
 
@@ -20,23 +20,33 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
-	
-	// CORS (Cross-origin resource sharing
-	// por padrão spring bloqueia a frontend que está hospedado em outro local acessar o backend que está em outro domínio
-	// a configuração de cors é necessário para liberar esse acesso
-	
-	@Autowired
-	private Environment env;
-	
-	protected void configure(HttpSecurity http) throws Exception {
-		if (Arrays.asList(env.getActiveProfiles()).contains("test")) {
-			http.headers().frameOptions().disable();
-		}
-		
-		http.cors().and().csrf().disable();
-		http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
-		http.authorizeRequests().anyRequest().permitAll();
-	}
+
+    // CORS (Cross-origin resource sharing
+    // por padrão spring bloqueia a frontend que está hospedado em outro local acessar o backend que está em outro domínio
+    // a configuração de cors é necessário para liberar esse acesso
+
+    @Autowired
+    private Environment environment;
+
+    @Override
+    protected void configure(HttpSecurity http) throws Exception {
+        if (Arrays.asList(environment.getActiveProfiles()).contains("test")) {
+            http.headers().frameOptions().disable();
+        }
+
+        http.cors().and().csrf().disable();
+        http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+        http.authorizeRequests().anyRequest().permitAll();
+    }
+
+    @Bean
+    CorsConfigurationSource corsConfigurationSource() {
+        CorsConfiguration configuration = new CorsConfiguration().applyPermitDefaultValues();
+        configuration.setAllowedMethods(Arrays.asList("POST", "GET", "PUT", "DELETE", "OPTIONS"));
+        final UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+        source.registerCorsConfiguration("/**", configuration);
+        return source;
+    }
 	
 	/*
 	@Bean
@@ -49,19 +59,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		.httpBasic(withDefaults());
 		return http.build();
 	}
-	
-	
-	@Bean
-	CorsConfigurationSource corsConfigurationSource() {
-		CorsConfiguration configuration = new CorsConfiguration().applyPermitDefaultValues();
-		//configuration.setAllowedOrigins(Arrays.asList("http://localhost:8080"));
-		configuration.setAllowedMethods(Arrays.asList("POST", "GET", "PUT", "DELETE", "OPTIONS"));
-		configuration.setAllowedHeaders(List.of("Authorization"));
-		UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-		source.registerCorsConfiguration("/**", configuration);
-		return source;
-	}	
-	
+	*/
+
 
 }
-*/
