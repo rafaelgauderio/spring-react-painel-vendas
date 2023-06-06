@@ -21,7 +21,7 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
-    // CORS (Cross-origin resource sharing
+    // CORS (Cross-origin resource sharing )
     // por padrão spring bloqueia a frontend que está hospedado em outro local acessar o backend que está em outro domínio
     // a configuração de cors é necessário para liberar esse acesso
 

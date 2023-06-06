@@ -1,5 +1,6 @@
 import axios from 'axios';
 import Chart from 'react-apexcharts';
+import { SaleSum } from 'types/sales';
 import { BASE_URL } from 'utils/request';
 
 export type ChartData = {
@@ -12,10 +13,18 @@ const DonutChart = () => {
     // iniciando os dados com lista vazia
     let chartData : ChartData = { labels: [], series: []};
 
-    axios.get(BASE_URL + '/sales/totalSalesBySeller')
+    //axios.get(BASE_URL + '/sales/totalSalesBySeller')
+    axios.get(`${BASE_URL}/sales/totalSalesBySeller`)             
+
         .then( (respostaRequisicao) => {
-            console.log(respostaRequisicao.data);
-        })
+            // tipando dados dos gráfico
+         const salesData = respostaRequisicao.data as SaleSum [];
+         const rotulos = salesData.map(x => x.sellerName);
+         const valores = salesData.map(y => y.sumSales);
+
+        chartData = {labels: rotulos, series: valores};
+        console.log(chartData);
+        });
 
     /*
     const dadosMockados = {
