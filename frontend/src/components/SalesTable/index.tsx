@@ -1,4 +1,27 @@
+import axios from "axios";
+import { useEffect, useState } from "react";
+import { SalePage } from "types/sales";
+import { formatLocalDate } from "utils/dateFormat";
+import { BASE_URL } from "utils/request";
+
 const SalesTable = () => {
+
+    const [pagina, setPagina] = useState<SalePage>({
+        totalElements: 0,
+        totalPages: 0,
+        last: true,
+        number: 0,
+        first: true,
+        empty: false,
+    });
+
+    useEffect(() => {
+        axios.get(`${BASE_URL}/sales?page=0&size=200&sort=date,asc`)
+            .then((requestResponse) => {
+                setPagina(requestResponse.data);
+            });
+    }, []);
+
 
     return (
         <div className="table-responsive">
@@ -13,27 +36,16 @@ const SalesTable = () => {
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>17/12/2022</td>
-                        <td>Larissa de Luca</td>
-                        <td>22</td>
-                        <td>37</td>
-                        <td>22570.00</td>
-                    </tr>
-                    <tr>
-                        <td>17/12/2022</td>
-                        <td>Larissa de Luca</td>
-                        <td>22</td>
-                        <td>37</td>
-                        <td>22570.00</td>
-                    </tr>
-                    <tr>
-                        <td>17/12/2022</td>
-                        <td>Larissa de Luca</td>
-                        <td>22</td>
-                        <td>37</td>
-                        <td>22570.00</td>
-                    </tr>                                   
+                    {pagina.content?.map(objeto => (
+                        <tr key={objeto.id}>
+                            <td>{formatLocalDate(objeto.date, 'dd/MM/yyyy')}</td>
+                            <td>{objeto.seller.name}</td>
+                            <td>{objeto.visitedClients}</td>
+                            <td>{objeto.closedDeals}</td>
+                            <td>R$ {objeto.quantity.toFixed(2)}</td>
+                        </tr>
+                    ))
+                    }
                 </tbody>
             </table>
         </div>

@@ -1,4 +1,4 @@
-import { format } from 'date-fns';
+import { format } from "date-fns";
 
 export const formatLocalDate = (date: string, desingPattern: string) => {
     const newDate = new Date(date);

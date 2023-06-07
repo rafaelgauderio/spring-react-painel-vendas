@@ -20,19 +20,19 @@ export type Sale = {
     seller: Seller,
 }
 
-export type SalePaged = {
-    content: Sale[];
+export type SalePage = {
+    content?: Sale[];
     totalElements: number,
     totalPages: number,
     last: boolean,
-    size: number,
+    size?: number,
     number: number,
     sort?: {
         sorted: boolean,
         unsorted: boolean,
         empty: boolean
     },
-    numberOfElements: number,
+    numberOfElements?: number,
     first: boolean,
-    empty: boolean
+    empty?: boolean
 }
